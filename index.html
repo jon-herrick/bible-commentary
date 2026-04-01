@@ -207,7 +207,7 @@
   </div>
   <div class="topbar-right">
     <div class="voice-pill">Piper · Chan · Chandler · Spurgeon · Bonhoeffer · Driscoll · Chuck Smith · C.S. Lewis</div>
-    <a href="mailto:YOUR_EMAIL@gmail.com" class="contact-link">✉ Contact</a>
+    <a href="mailto:jon@jonherrick.com" class="contact-link">✉ Contact</a>
   </div>
 </div>
 
@@ -262,9 +262,9 @@
 </div>
 
 <footer>
-  <a href="mailto:YOUR_EMAIL@gmail.com">Contact Jonny</a> &nbsp;·&nbsp;
+  <a href="mailto:jon@jonherrick.com">Contact Jonny</a> &nbsp;·&nbsp;
   Built on the shoulders of faithful teachers &nbsp;·&nbsp;
-  <a href="https://github.com/YOUR_GITHUB_USERNAME/bible-commentary">GitHub</a>
+  <a href="https://github.com/jon-herrick/bible-commentary">GitHub</a>
 </footer>
 
 <!-- Firebase SDK -->
@@ -277,12 +277,12 @@ import { getFirestore, collection, getDocs, doc, setDoc } from 'https://www.gsta
 // Get this from: Firebase Console → Project Settings → Your apps
 // ============================================================
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAGxeYsC6PcjdivHtQRxYIF2D3DyztCUmI",
+  authDomain: "bible-commentary-ee455.firebaseapp.com",
+  projectId: "bible-commentary-ee455",
+  storageBucket: "bible-commentary-ee455.firebasestorage.app",
+  messagingSenderId: "243542023004",
+  appId: "1:243542023004:web:04100b38ca0872fea9ff99"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -557,7 +557,7 @@ function showTab() {
   const area = document.getElementById('content');
   const d = loadedData[sel];
   if (!d) {
-    area.innerHTML = `<div class="empty-state"><p>No commentary yet for <strong>${sel}</strong></p><p style="font-size:12px;margin-top:4px">Request this book and Jonny will add it soon.</p><a href="mailto:YOUR_EMAIL@gmail.com?subject=Commentary Request: ${sel}&body=Hi Jonny, I'd love commentary for the book of ${sel}." class="req-btn" style="text-decoration:none;display:inline-block;margin-top:8px">Request ${sel} ↗</a></div>`;
+    area.innerHTML = `<div class="empty-state"><p>No commentary yet for <strong>${sel}</strong></p><p style="font-size:12px;margin-top:4px">Request this book and Jonny will add it soon.</p><a href="mailto:jon@jonherrick.com?subject=Commentary Request: ${sel}&body=Hi Jonny, I'd love commentary for the book of ${sel}." class="req-btn" style="text-decoration:none;display:inline-block;margin-top:8px">Request ${sel} ↗</a></div>`;
     return;
   }
   if (activeTab === 'themes') {
@@ -898,7 +898,7 @@ function jumpToResult(bookName, tab) {
 }
 
 function requestBook(bookName) {
-  window.open(`mailto:YOUR_EMAIL@gmail.com?subject=Commentary Request: ${bookName}&body=Hi Jonny, I'd love commentary for the book of ${bookName}. I found it while searching the Bible Commentary app.`, '_blank');
+  window.open(`mailto:jon@jonherrick.com?subject=Commentary Request: ${bookName}&body=Hi Jonny, I'd love commentary for the book of ${bookName}. I found it while searching the Bible Commentary app.`, '_blank');
 }
 
 // Expose functions globally so onclick handlers can reach them
