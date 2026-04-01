@@ -253,9 +253,9 @@
 </div>
 
 <footer>
-  <a href="mailto:YOUR_EMAIL@gmail.com">Contact Jonny</a> &nbsp;·&nbsp;
+  <a href="mailto:jon@jonherrick.com">Contact Jonny</a> &nbsp;·&nbsp;
   Built on the shoulders of faithful teachers &nbsp;·&nbsp;
-  <a href="https://github.com/YOUR_GITHUB_USERNAME/bible-commentary">GitHub</a>
+  <a href="https://github.com/jon-herrick/bible-commentary">GitHub</a>
 </footer>
 
 <!-- Firebase SDK -->
@@ -340,14 +340,19 @@ async function loadAllFromFirebase() {
 // Push all seed books to Firebase (admin only, run once)
 window.pushBookToFirebase = async function() {
   if (!confirm('Push all seed books to Firebase? This will overwrite existing data.')) return;
+  console.log('Push started, SEED books:', Object.keys(SEED));
+  console.log('db object:', db);
   try {
     for (const [bookName, data] of Object.entries(SEED)) {
+      console.log('Pushing:', bookName);
       await setDoc(doc(db, 'commentary', bookName), data);
+      console.log('Done:', bookName);
     }
     alert('✅ All books pushed to Firebase successfully!');
     await loadAllFromFirebase();
   } catch(e) {
-    alert('❌ Error: ' + e.message + '\n\nMake sure your Firebase config is set up correctly.');
+    console.error('Push error:', e);
+    alert('❌ Error: ' + e.message);
   }
 };
 
