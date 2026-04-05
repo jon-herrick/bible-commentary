@@ -1399,7 +1399,17 @@ function showTab() {
     area.innerHTML = html + '</div>';
   } else if (activeTab === 'quotes') {
     let html = '<div class="c-section"><div class="c-label">Notable quotes</div>';
-    (d.quotes || []).forEach(q => {
+    function parseRef(ref) {
+      if (!ref) return [999, 999];
+      const m = ref.match(/(\d+):(\d+)/);
+      return m ? [parseInt(m[1]), parseInt(m[2])] : [999, 999];
+    }
+    const sortedQuotes = (d.quotes || []).slice().sort((a, b) => {
+      const [ac, av] = parseRef(a.ref);
+      const [bc, bv] = parseRef(b.ref);
+      return ac !== bc ? ac - bc : av - bv;
+    });
+    sortedQuotes.forEach(q => {
       html += `<div class="quote-block"><div class="quote-text">${esc(q.q)}</div><div class="quote-footer"><div class="quote-attr">— ${esc(q.a)}</div><div class="quote-ref">${esc(q.ref)}</div></div></div>`;
     });
     area.innerHTML = html + '</div>';
