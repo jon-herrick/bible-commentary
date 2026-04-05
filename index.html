@@ -1374,7 +1374,16 @@ function showTab() {
     return;
   }
   if (activeTab === 'themes') {
-    area.innerHTML = `<div class="c-section"><div class="genre-badge">📖 ${esc(META[sel].g)}</div><div class="c-label">How to read this book</div><div class="genre-note">${esc(d.genre)}</div><div class="c-label">Key themes &amp; theological insights</div><div class="c-body">${esc(d.themes)}</div></div>`;
+    area.innerHTML = `<div class="c-section"><div class="genre-badge">📖 ${esc(META[sel].g)}</div><div class="c-label">How to read this book</div><div class="genre-note">${esc(d.genre)}</div><div class="c-label">Key themes &amp; theological insights</div><div class="c-body">${
+      (d.themes || '').split('\n\n').map(p => {
+        const teachers = ['John Piper','Francis Chan','Matt Chandler','Charles Spurgeon','Dietrich Bonhoeffer','Mark Driscoll','Chuck Smith','C.S. Lewis','Timothy Keller','N.T. Wright','Eugene Peterson'];
+        let html = esc(p);
+        teachers.forEach(t => {
+          html = html.replace(new RegExp('^(' + t.replace('.','[.]') + ')', ''), '<strong>$1</strong>');
+        });
+        return '<p style="margin:0 0 14px 0;line-height:1.7">' + html + '</p>';
+      }).join('')
+    }</div></div>`;
   } else if (activeTab === 'chapters') {
     let html = '<div class="c-section"><div class="c-label">Chapter-by-chapter teaching notes</div>';
     (d.chapters || []).forEach(ch => {
