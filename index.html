@@ -434,6 +434,17 @@ function sortQuotesByRef(quotes) {
   });
 }
 
+function sortQuotesByRef(quotes) {
+  return [...quotes].sort((a, b) => {
+    const parse = ref => {
+      const part = (ref || '').trim().split(' ').pop();
+      const [ch, v] = part.split(':').map(Number);
+      return (ch || 0) * 1000 + (v || 0);
+    };
+    return parse(a.ref) - parse(b.ref);
+  });
+}
+
 function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
 // ============================================================
