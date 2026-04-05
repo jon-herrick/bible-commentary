@@ -1406,7 +1406,10 @@ function showTab() {
   } else if (activeTab === 'resources') {
     let html = '<div class="c-section"><div class="c-label">Recommended resources</div>';
     (d.resources || []).forEach(r => {
-      html += `<div class="res-item"><div class="res-tag">${esc(r.type)}</div><div><div class="res-title">${esc(r.title)} <span class="res-author">— ${esc(r.author)}</span></div><div class="res-sub">${esc(r.detail)}</div></div></div>`;
+      const titleHtml = r.url
+        ? `<a href="${r.url}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">${esc(r.title)} ↗</a>`
+        : esc(r.title);
+      html += `<div class="res-item"><div class="res-tag">${esc(r.type)}</div><div><div class="res-title">${titleHtml} <span class="res-author">— ${esc(r.author)}</span></div><div class="res-sub">${esc(r.detail)}</div></div></div>`;
     });
     area.innerHTML = html + '</div>';
   }
